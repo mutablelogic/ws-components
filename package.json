@@ -1,0 +1,51 @@
+{
+  "name": "@mutablelogic/js-components",
+  "version": "0.0.0",
+  "description": "Web Components Design System",
+  "main": "dist/index.js",
+  "scripts": {
+    "all": "npm-run-all lint build docs",
+    "build": "rm -fr dist && install -d dist && cp -r html/* dist && esbuild js/index.js --format=esm --minify --bundle --outdir=dist --sourcemap --asset-names=assets/[name]-[hash] --loader:.svg=file --loader:.png=file --loader:.woff=file --loader:.woff2=file --loader:.ttf=file --loader:.otf=file",
+    "lint": "eslint js",
+    "watch": "npm-watch"
+  },
+  "watch": {
+    "build": {
+      "patterns": [
+        "css",
+        "html",
+        "js"
+      ],
+      "extensions": "html,css,js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mutablelogic/js-components.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "author": "David Thorpe",
+  "license": "Apache",
+  "bugs": {
+    "url": "https://github.com/mutablelogic/js-components/issues"
+  },
+  "homepage": "https://github.com/mutablelogic/js-components#readme",
+  "devDependencies": {
+    "esbuild": "^0.11.12",
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "npm-run-all": "^4.1.5",
+    "npm-watch": "^0.9.0"
+  },
+  "dependencies": {
+    "bootstrap-icons": "^1.4.1",
+    "lit": "^2.0.0",
+    "lit-html": "^2.0.0-rc.5"
+  },
+  "files": [
+    "dist/**/*.{js,map,woff,woff2,txt,ttf,css,html,svg,png}"
+  ]
+}
