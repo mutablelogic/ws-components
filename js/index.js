@@ -26,6 +26,9 @@ import './nav/wc-nav-item';
 import './grid/wc-row';
 import './grid/wc-col';
 
+// Icons
+import './icon/wc-icon';
+
 // Extensions
 import './extension/string';
 

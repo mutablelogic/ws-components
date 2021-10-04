@@ -9,10 +9,14 @@ import Event from './core/event';
 
 // Bootstrap
 document.addEventListener('DOMContentLoaded', () => {
+  // Page objects
   const nav = document.querySelector('wc-nav#lhnav');
+  const body = document.querySelector('div#body');
+
+  // Provider objects
   const provider = new Provider();
 
-  // Navigation
+  // Navigation events
   nav.addEventListener(Event.EVENT_CLICK, (e) => {
     // Reload the page with the anchor as the name of the nav item
     const name = e.detail;
@@ -22,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Provider
+  // Provider events
   provider.addEventListener(Event.EVENT_START, (e) => {
     console.log('Start', e.detail);
   });
@@ -32,7 +36,13 @@ document.addEventListener('DOMContentLoaded', () => {
   provider.addEventListener(Event.EVENT_ERROR, (e) => {
     console.log('Error', e.detail);
   });
+  provider.addEventListener(Event.EVENT_ADD, (e) => {
+    body.innerHTML = e.detail;
+  });
+  provider.addEventListener(Event.EVENT_CHANGE, (e) => {
+    body.innerHTML = e.detail;
+  });
 
   // Make first request for 'introduction'
-  provider.request(`${window.location.hash.removePrefix('#') || 'introduction' }.html`);
+  provider.request(`${window.location.hash.removePrefix('#') || '01-introduction'}.html`);
 });

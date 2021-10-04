@@ -5,6 +5,8 @@
 */
 import Model from './model';
 import Event from './event';
+import StringStore from './stringstore';
+import ModelStore from './modelstore';
 
 /**
  * Provider of data. In general, add provider to the controller using
@@ -20,10 +22,11 @@ export default class Provider extends EventTarget {
     this.$timer = null;
 
     if (!model) {
-      // Allow empty model to fetch raw data
+      // Allow empty model to fetch string data
+      this.$store = new StringStore();
       // eslint-disable-next-line no-prototype-builtins
     } else if (model && Model.prototype.isPrototypeOf(model.prototype)) {
-      this.$model = model;
+      this.$store = new ModelStore(model);
     } else {
       throw new Error('Provider: Invalid model');
     }
@@ -120,17 +123,14 @@ export default class Provider extends EventTarget {
   /**
    * Private method to process string
    */
-  // eslint-disable-next-line class-methods-use-this
   $string(data) {
-    // Check to see if this object is changed
-    console.log(`string ${data}`);
+    this.$store.object = data;
   }
 
   /**
    * Private method to process an object
    */
-  // eslint-disable-next-line class-methods-use-this
   $object(data) {
-    console.log(`object ${data}`);
+    this.$store.object = data;
   }
 }

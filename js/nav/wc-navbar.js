@@ -23,11 +23,13 @@ window.customElements.define('wc-navbar', class extends LitElement {
         padding: var(--navbar-padding);
         background-color: var(--navbar-background-color);
         color: var(--navbar-color);
+        border-bottom: var(--navbar-border-bottom);
+      }
+      :host nav slot {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-between;
         align-items: center;
-        border-bottom: var(--navbar-border-bottom);
       }
       `;
   }

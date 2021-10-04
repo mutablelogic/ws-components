@@ -10,23 +10,27 @@
 </head>
 
 <body>
-  <wc-navbar>Web Components Storybook</wc-navbar>
+  <wc-navbar>
+    <span>
+      <wc-icon name="book" style="margin: 0.2em;"></wc-icon>
+      <strong>Storybook</strong>
+    </span>
+    <wc-nav-item name="storybook" href="https://github.com/mutablelogic/js-components">
+      <wc-icon name="github" style="margin: 0.2em;"></wc-icon>
+      <span>GitHub</span>
+    </wv-nav-item>
+  </wc-navbar>
   <wc-row>
-    <wc-col width="2" style="background-color: lightgray">
-      <!-- The navigation in column format -->
+    <wc-col width="2" style="background-color: var(--control-color);">
       <wc-nav id="lhnav" column>
-        <wc-nav-item name="introduction">Introduction</wc-nav-item>
-        <wc-nav-item name="typography">Typography</wc-nav-item>
-        <wc-nav-item name="grid">Grid</wc-nav-item>
-        <wc-nav-item name="navigation">Navigation</wc-nav-item>
+        <wc-nav-item name="01-introduction">Introduction</wc-nav-item>
+        <wc-nav-item name="02-typography">Typography</wc-nav-item>
+        <wc-nav-item name="03-grid">Grid</wc-nav-item>
+        <wc-nav-item name="04-navigation">Navigation</wc-nav-item>
       </wc-nav>
     </wc-col>
     <wc-col width="10">
-      <div class="container">
-        <h1>Introduction</h1>
-        <!-- This is where the content goes -->
-        CONTENT
-      </div>
+      <div class="container" id="body"></div>
     </wc-col>
   </wc-row>
 </body>
