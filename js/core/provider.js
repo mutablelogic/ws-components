@@ -19,8 +19,10 @@ export default class Provider extends EventTarget {
     // Set class properties
     this.$timer = null;
 
-    // eslint-disable-next-line no-prototype-builtins
-    if (Model.prototype.isPrototypeOf(model.prototype)) {
+    if (!model) {
+      // Allow empty model to fetch raw data
+      // eslint-disable-next-line no-prototype-builtins
+    } else if (model && Model.prototype.isPrototypeOf(model.prototype)) {
       this.$model = model;
     } else {
       throw new Error('Provider: Invalid model');
@@ -89,8 +91,10 @@ export default class Provider extends EventTarget {
         this.$array(data);
       } else if (data instanceof Object) {
         this.$object(data);
+      } else if (data instanceof String || typeof data === 'string') {
+        this.$string(data);
       } else {
-        console.log('Data error', data);
+        throw Error(`Returned data is of type ${typeof (data)}`);
       }
     }).catch((error) => {
       this.dispatchEvent(new CustomEvent(Event.EVENT_ERROR, {
@@ -114,10 +118,19 @@ export default class Provider extends EventTarget {
   }
 
   /**
+   * Private method to process string
+   */
+  // eslint-disable-next-line class-methods-use-this
+  $string(data) {
+    // Check to see if this object is changed
+    console.log(`string ${data}`);
+  }
+
+  /**
    * Private method to process an object
    */
   // eslint-disable-next-line class-methods-use-this
   $object(data) {
-    console.log(data);
+    console.log(`object ${data}`);
   }
 }

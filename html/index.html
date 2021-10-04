@@ -1,30 +1,33 @@
 <!DOCTYPE html>
+
 <head>
-    <title>js-components | storybook</title>
-    <link rel="stylesheet" href="./index.css">
-    <link rel="shortcut icon" type="image/png" href="#">
-    <script type="module" src="./index.js" defer></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-components | storybook</title>
+  <link rel="stylesheet" href="./index.css">
+  <link rel="shortcut icon" type="image/png" href="#">
+  <script type="module" src="./index.js" defer></script>
+  <script type="module" src="./storybook.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+
 <body>
-    <wc-navbar>Web Components Storybook</wc-navbar>
-    <wc-row>
-        <wc-col width="2" style="background-color: lightgray">
-            <!-- The navigation in column format -->
-            <wc-nav direction="column">
-                <wc-nav-item>Introduction</wc-nav-item>
-                <wc-nav-item>Typography</wc-nav-item>
-                <wc-nav-item>Grid</wc-nav-item>
-                <wc-nav-item>Navigation</wc-nav-item>
-            </wc-nav>
-        </wc-col>
-        <wc-col width="10">
-            <!-- This is where the content goes -->
-            CONTENT
-        </wc-col>
-    </wc-row>
-    <script type="module">
-        console.log('hello, world!');
-    </script>
+  <wc-navbar>Web Components Storybook</wc-navbar>
+  <wc-row>
+    <wc-col width="2" style="background-color: lightgray">
+      <!-- The navigation in column format -->
+      <wc-nav id="lhnav" column>
+        <wc-nav-item name="introduction">Introduction</wc-nav-item>
+        <wc-nav-item name="typography">Typography</wc-nav-item>
+        <wc-nav-item name="grid">Grid</wc-nav-item>
+        <wc-nav-item name="navigation">Navigation</wc-nav-item>
+      </wc-nav>
+    </wc-col>
+    <wc-col width="10">
+      <div class="container">
+        <h1>Introduction</h1>
+        <!-- This is where the content goes -->
+        CONTENT
+      </div>
+    </wc-col>
+  </wc-row>
 </body>
 </html>

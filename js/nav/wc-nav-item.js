@@ -1,4 +1,5 @@
 import { LitElement, html, css } from 'lit';
+import Event from '../core/event';
 
 /**
  * A row element
@@ -19,6 +20,12 @@ window.customElements.define('wc-nav-item', class extends LitElement {
        * @type {boolean}
        */
       disabled: { type: Boolean },
+
+      /**
+       * The name of the nav item
+       * @type {string}
+       */
+       name: { type: String },
     };
   }
 
@@ -51,10 +58,18 @@ window.customElements.define('wc-nav-item', class extends LitElement {
     `;
   }
 
-  // eslint-disable-next-line class-methods-use-this
   render() {
     return html`
-        <li class="${this.active ? 'active' : ''} ${this.disabled ? 'disabled' : ''}"><slot></slot></li>
+        <li @click=${this.onClick} class="${this.active ? 'active' : ''} ${this.disabled ? 'disabled' : ''}"><slot></slot></li>
       `;
+  }
+
+  // Events
+  onClick() {
+    this.dispatchEvent(new CustomEvent(Event.EVENT_CLICK, { 
+      bubbles: true, 
+      composed: true,
+      detail: this.name || this.textContent,
+    }));
   }
 });

@@ -26,6 +26,9 @@ import './nav/wc-nav-item';
 import './grid/wc-row';
 import './grid/wc-col';
 
+// Extensions
+import './extension/string';
+
 // Set favicon
 const link = document.querySelector("link[rel~='icon']");
 if (link) {

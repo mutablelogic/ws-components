@@ -22,18 +22,18 @@ window.customElements.define('wc-nav', class extends LitElement {
         padding-left: 0;
         margin-bottom: 0;
         position: relative;
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
         border-bottom: var(--nav-border-bottom);
-      }
-      :host nav.direction-column {
-        flex-direction: column !important;
       }
       :host nav ul {
         margin: 0;
         padding: 0;
         list-style: none; 
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+      }
+      :host nav.direction-column ul {
+        flex-direction: column !important;
       }
       `;
   }
