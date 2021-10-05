@@ -76,6 +76,9 @@ export default class Model {
    * Determine equality between two objects
    */
   static equals(a, b) {
+    if (!Model.isModel(a) || !Model.isModel(b)) {
+      throw Error('equals() can only be called on a Model');
+    }
     // TODO
     return (a === b);
   }
@@ -84,20 +87,35 @@ export default class Model {
    * Return key for an object
    */
   static key(a) {
-    if (!(a instanceof Model)) {
+    if (!Model.isModel(a)) {
       throw Error('hashCode() can only be called on a Model');
     }
     return `${a.$properties.key || Model.hashCode(a)}`;
   }
 
   /*
+   * Return a unique and valid ElementId for an element and a model
+   */
+  static toElementId(element, key) {
+    const id = `${element.id || ''}-${key || ''}`;
+    return id.replace(/([^A-Za-z0-9-_])\s*/g, '_');
+  }
+
+  /*
    * Return hashcode for an object
    */
   static hashCode(a) {
-    if (!(a instanceof Model)) {
+    if (!Model.isModel(a)) {
       throw Error('hashCode() can only be called on a Model');
     }
     return a.toJSON().hashCode();
+  }
+
+  /*
+   * Return true if object is a model
+   */
+  static isModel(a) {
+    return (a instanceof Model);
   }
 
   /*

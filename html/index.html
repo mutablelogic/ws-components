@@ -4,8 +4,8 @@
   <title>js-components | storybook</title>
   <link rel="stylesheet" href="./index.css">
   <link rel="shortcut icon" type="image/png" href="#">
-  <script type="module" src="./index.js" defer></script>
-  <script type="module" src="./storybook.js" defer></script>
+  <script type="module" src="./index.js"></script>
+  <script type="module" src="./storybook.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -18,7 +18,7 @@
     <wc-nav-item name="storybook" href="https://github.com/mutablelogic/js-components">
       <wc-icon name="github" style="margin: 0.2em;"></wc-icon>
       <span>GitHub</span>
-    </wv-nav-item>
+      </wv-nav-item>
   </wc-navbar>
   <wc-row>
     <wc-col width="2" style="background-color: var(--control-color);">
@@ -30,8 +30,21 @@
       </wc-nav>
     </wc-col>
     <wc-col width="10">
-      <div class="container" id="body"></div>
+      <div class="container" id="body">
+        TABLE:
+        <wc-table id="mqtt">
+            <wc-table-row>
+              <wc-table-cell id="version">[version]</wc-table-cell>
+              <wc-table-cell id="broker">[broker]</wc-table-cell>
+              <wc-table-cell id="database">[database]</wc-table-cell>
+              <wc-table-cell id="retain">[retain]</wc-table-cell>
+              <wc-table-cell id="connected">[connected]</wc-table-cell>
+              <wc-table-cell id="count">[count]</wc-table-cell>
+            </wc-table-row>
+        </wc-table>
+      </div>
     </wc-col>
   </wc-row>
 </body>
+
 </html>

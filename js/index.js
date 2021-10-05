@@ -26,6 +26,11 @@ import './nav/wc-nav-item';
 import './grid/wc-row';
 import './grid/wc-col';
 
+// Table components
+import './table/wc-table';
+import './table/wc-table-row';
+import './table/wc-table-cell';
+
 // Icons
 import './icon/wc-icon';
 

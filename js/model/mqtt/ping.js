@@ -69,4 +69,9 @@ export default class Ping extends Model {
       count: { type: Number },
     };
   }
+
+  // Return a key based on broker
+  get key() {
+    return this.broker;
+  }
 }

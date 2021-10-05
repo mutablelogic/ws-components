@@ -15,11 +15,13 @@ class Controller {
   constructor() {
     this.$protos = new Map();
     this.$providers = new Map();
+    this.$renderers = new Map();
   }
 
   /**
     * Define a data provider for the controller. The object is then
     * accessible as a property of the controller.
+    *
     * @param {string} key - The name of the property
     * @param {Provider} object - The object
     */
@@ -45,13 +47,33 @@ class Controller {
     return object;
   }
 
-  bind(key, host) {
-    if (this.$providers.has(key)) {
+  /**
+    * Bind a provider to a host (a web component) so that the host
+    * can be updated by the controller.
+    *
+    * @param {string} key - The name of the provider
+    * @param {LitElement} host - The web component
+    * @param {function} renderer - The function used to render content before connecting to host
+    */
+  bind(key, host, renderer) {
+    if (!this.$providers.has(key)) {
       throw Error(`Controller: Invalid key ${key}`);
     }
-    return new HostController(host, this.$providers.get(key));
+    if (!(host instanceof HTMLElement)) {
+      throw Error(`Controller: host is not a HTMLElement for ${key.quote()}`);
+    }
+    if (typeof renderer !== 'function') {
+      throw Error(`Controller: missing renderer for provider ${key.quote()}`);
+    }
+    return new HostController(host, this.$providers.get(key), renderer);
   }
 
+  /**
+    * Add properties to a newly constructed object.
+    *
+    * @param {Model} proto - The model to add the prototype to
+    * @param {Class} model - The class
+    */
   setPrototypeOf(proto, model) {
     let superproto = this.$protos.get(model);
     if (!superproto) {
