@@ -15,16 +15,6 @@ window.customElements.define('wc-table', class extends LitElement {
       `;
   }
 
-  static get properties() {
-    return {
-      /**
-       * Nav is displayed in a column
-       * @type {array}
-       */
-      columns: { type: Array },
-    };
-  }
-
   add(model) {
     // Where to insert the new element
     const table = this.shadowRoot.querySelector('tbody');
@@ -39,9 +29,9 @@ window.customElements.define('wc-table', class extends LitElement {
     if (existingElement) {
       return existingElement;
     }
-      template.id = elementId;
-      table.appendChild(template);
-      return template;
+    template.id = elementId;
+    table.appendChild(template);
+    return template;
   }
 
   /**
