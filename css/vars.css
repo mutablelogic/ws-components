@@ -36,14 +36,16 @@
     /* grids and spacing */
     --spacer: 1rem;
     --spacer-0: 0;
-    --spacer-1: var(--spacer);
-    --spacer-2: calc(var(--spacer) * 1.1);
-    --spacer-3: calc(var(--spacer) * 1.2);
-    --spacer-4: calc(var(--spacer) * 1.3);
-    --spacer-5: calc(var(--spacer) * 1.4);
-    --spacer-6: calc(var(--spacer) * 1.5);
+    --spacer-1: calc(var(--spacer) * 0.2);
+    --spacer-2: calc(var(--spacer) * 0.4);
+    --spacer-3: calc(var(--spacer) * 0.6);
+    --spacer-4: calc(var(--spacer) * 0.8);
+    --spacer-5: calc(var(--spacer) * 1.0);
+    --spacer-6: calc(var(--spacer) * 1.2);
+
+    /* containers */
     --container-padding-x: var(--spacer);
-    --container-padding-y: 0;
+    --container-padding-y: var(--spacer-2);
 
     /* body */
     --body-background-color: var(--white-color);

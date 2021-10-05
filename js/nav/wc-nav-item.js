@@ -25,7 +25,7 @@ window.customElements.define('wc-nav-item', class extends LitElement {
        * The name of the nav item
        * @type {string}
        */
-       name: { type: String },
+      name: { type: String },
     };
   }
 
@@ -66,8 +66,8 @@ window.customElements.define('wc-nav-item', class extends LitElement {
 
   // Events
   onClick() {
-    this.dispatchEvent(new CustomEvent(Event.EVENT_CLICK, { 
-      bubbles: true, 
+    this.dispatchEvent(new CustomEvent(Event.CLICK, {
+      bubbles: true,
       composed: true,
       detail: this.name || this.textContent,
     }));

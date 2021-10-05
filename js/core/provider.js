@@ -5,38 +5,27 @@
 */
 import Model from './model';
 import Event from './event';
-import StringStore from './stringstore';
-import ModelStore from './modelstore';
+import StringStore from './mixin/stringstore';
+import ModelStore from './mixin/modelstore';
 
 /**
- * Provider of data. In general, add provider to the controller using
- * the define method. Then for any component which is to be associated
- * with a provider, use the name of the provider.
+ * Provider of data. After creation, add provider to the controller
+ * so that it is made available to any web components.
  * @class
-*/
-export default class Provider extends EventTarget {
+ */
+export default class Provider extends ModelStore(StringStore(EventTarget)) {
   constructor(model, origin) {
-    super();
+    super(model);
 
     // Set class properties
     this.$timer = null;
 
-    if (!model) {
-      // Allow empty model to fetch string data
-      this.$store = new StringStore();
-      // eslint-disable-next-line no-prototype-builtins
-    } else if (model && Model.prototype.isPrototypeOf(model.prototype)) {
-      this.$store = new ModelStore(model);
-    } else {
+    // eslint-disable-next-line no-prototype-builtins
+    if (model && !Model.prototype.isPrototypeOf(model.prototype)) {
       throw new Error('Provider: Invalid model');
     }
-    if (typeof origin === 'string') {
-      this.$origin = `/${origin.removePrefix('/')}`;
-    } else if (!origin) {
-      this.$origin = '/';
-    } else {
-      throw new Error('Provider: Invalid prefix');
-    }
+
+    this.$origin = origin || '/';
   }
 
   /**
@@ -67,11 +56,8 @@ export default class Provider extends EventTarget {
    */
   $fetch(path, req) {
     let status;
-    let absurl = this.$origin + (path || '').removePrefix('/');
-    if (!absurl.hasPrefix('/')) {
-      absurl = `/${absurl}`;
-    }
-    this.dispatchEvent(new CustomEvent(Event.EVENT_START, {
+    const absurl = (this.$origin + (path || '').removePrefix('/')) || '/';
+    this.dispatchEvent(new CustomEvent(Event.START, {
       detail: absurl,
     }));
     fetch(absurl, req).then((response) => {
@@ -100,12 +86,12 @@ export default class Provider extends EventTarget {
         throw Error(`Returned data is of type ${typeof (data)}`);
       }
     }).catch((error) => {
-      this.dispatchEvent(new CustomEvent(Event.EVENT_ERROR, {
+      this.dispatchEvent(new CustomEvent(Event.ERROR, {
         detail: error,
       }));
     })
       .finally(() => {
-        this.dispatchEvent(new CustomEvent(Event.EVENT_DONE, {
+        this.dispatchEvent(new CustomEvent(Event.END, {
           detail: absurl,
         }));
       });
@@ -124,7 +110,7 @@ export default class Provider extends EventTarget {
    * Private method to process string
    */
   $string(data) {
-    this.$store.object = data;
+    this.string = data;
   }
 
   /**
