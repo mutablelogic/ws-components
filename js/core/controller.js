@@ -13,6 +13,7 @@ import Provider from './provider';
 */
 class Controller {
   constructor() {
+    this.$protos = new Map();
     this.$providers = new Map();
   }
 
@@ -49,6 +50,41 @@ class Controller {
       throw Error(`Controller: Invalid key ${key}`);
     }
     return new HostController(host, this.$providers.get(key));
+  }
+
+  setPrototypeOf(proto, model) {
+    let superproto = this.$protos.get(model);
+    if (!superproto) {
+      superproto = {};
+      this.$protos.set(model, superproto);
+
+      // $name property
+      Object.defineProperty(superproto, '$name', {
+        value: model.name,
+        writable: false,
+        enumerable: false,
+      });
+
+      // $properties property
+      const properties = model.properties || {};
+      Object.defineProperty(superproto, '$properties', {
+        value: properties,
+        writable: false,
+        enumerable: false,
+      });
+
+      // Define each property with a getter and a setter
+      Object.keys(properties).forEach((key) => {
+        Object.defineProperty(superproto, key, {
+          // eslint-disable-next-line object-shorthand, func-names
+          get: function () { return this.get(key); },
+          // eslint-disable-next-line object-shorthand, func-names
+          set: function (value) { return this.set(key, value); },
+          enumerable: true,
+        });
+      });
+    }
+    Object.setPrototypeOf(Object.getPrototypeOf(proto), superproto);
   }
 }
 

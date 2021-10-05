@@ -24,7 +24,7 @@ const StringStore = (Base) => class extends Base {
     if (data !== this.$data) {
       if (!data && this.$data) {
         this.dispatchEvent(new CustomEvent(Event.DELETE, {
-          detail: data,
+          detail: this.$data,
         }));
       } else if (data && !this.$data) {
         this.dispatchEvent(new CustomEvent(Event.ADD, {

@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const name = e.detail;
     if (name) {
       window.location.hash = `${name}`;
-      provider.request(`${window.location.hash.removePrefix('#')}.html`);
+      provider.request(`storybook/${window.location.hash.removePrefix('#')}.html`);
       nav.active = name;
     }
   });
@@ -63,18 +63,18 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('MQTT Error', e.detail);
   });
   mqtt.addEventListener(Event.ADD, (e) => {
-    console.log('MQTT Add', e.detail);
+    console.log(`MQTT Add ${e.detail}`);
   });
   mqtt.addEventListener(Event.CHANGE, (e) => {
-    console.log('MQTT Change', e.detail);
+    console.log(`MQTT Change ${e.detail} ${e.detail.key}`);
   });
   mqtt.addEventListener(Event.DELETE, (e) => {
-    console.log('MQTT Delete', e.detail);
+    console.log(`MQTT Delete ${e.detail}`);
   });
 
   // Make first request for 'introduction'
   provider.request(`${window.location.hash.removePrefix('#') || '01-introduction'}.html`);
 
   // Make request for MQTT provider
-  mqtt.request();
+  mqtt.request('/', null, 1000 * 5);
 });

@@ -12,10 +12,24 @@ import Model from '../../core/model';
 */
 
 /**
- * Model defines properties
  * @class
+ * Model defines properties
 */
 export default class Ping extends Model {
+  /**
+   * @property
+   * Return the name of the model
+   *
+   */
+  static get name() {
+    return 'Ping';
+  }
+
+  /**
+   * @property
+   * Return the properties of the model
+   *
+   */
   static get properties() {
     return {
       /**

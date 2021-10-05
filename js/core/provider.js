@@ -77,11 +77,11 @@ export default class Provider extends ModelStore(StringStore(EventTarget)) {
       if (!status.ok) {
         throw new Error(`${absurl} ${status.statusText} ${status.status}`);
       } else if (data instanceof Array) {
-        this.$array(data);
+        this.array = data;
       } else if (data instanceof Object) {
-        this.$object(data);
+        this.object = data;
       } else if (data instanceof String || typeof data === 'string') {
-        this.$string(data);
+        this.string = data;
       } else {
         throw Error(`Returned data is of type ${typeof (data)}`);
       }
@@ -95,28 +95,5 @@ export default class Provider extends ModelStore(StringStore(EventTarget)) {
           detail: absurl,
         }));
       });
-  }
-
-  /**
-   * Private method to process array of objects
-   */
-  $array(data) {
-    data.forEach((object) => {
-      this.$object(object);
-    });
-  }
-
-  /**
-   * Private method to process string
-   */
-  $string(data) {
-    this.string = data;
-  }
-
-  /**
-   * Private method to process an object
-   */
-  $object(data) {
-    this.$store.object = data;
   }
 }
