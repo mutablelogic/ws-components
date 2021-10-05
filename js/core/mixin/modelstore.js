@@ -33,7 +33,7 @@ const ModelStore = (Base) => class extends Base {
   set array(data) {
     // Add markers
     const keys = new Map();
-    this.$map.keys().forEach((key) => {
+    this.$map.forEach((_, key) => {
       keys[key] = true;
     });
     // Fire add and change events
@@ -41,7 +41,7 @@ const ModelStore = (Base) => class extends Base {
       keys.delete(this.$set(obj));
     });
     // Fire delete events
-    keys.keys().forEach((key) => {
+    keys.forEach((_, key) => {
       const model = this.$map.get(key);
       this.dispatchEvent(new CustomEvent(Event.DELETE, {
         detail: model,

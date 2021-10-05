@@ -10,19 +10,16 @@ import MQTT from './model/mqtt';
 import Controller from './core/controller';
 
 // Define providers
-Controller.define('mqtt', new Provider(MQTT.Ping, 'https://rpi4b.mutablelogic.com:8443/api/mqtt/'));
+Controller.define('mqtt', new Provider(MQTT.Message, 'https://rpi4b.mutablelogic.com:8443/api/mqtt/m?limit=20&type=text'));
 Controller.define('pages', new Provider());
 
 // Bind to elements
 Controller.bind('mqtt', document.querySelector('#mqtt'), (model, view) => {
-  view.querySelector('#version').innerHTML = model.version;
-  view.querySelector('#broker').innerHTML = model.broker;
-  view.querySelector('#database').innerHTML = model.database;
-  view.querySelector('#retain').innerHTML = model.retain;
-  view.querySelector('#connected').innerHTML = model.connected;
-  if (model.count >= 0) {
-    view.querySelector('#count').innerHTML = model.count;
-  }
+  view.querySelector('#id').innerHTML = model.id;
+  view.querySelector('#topic').innerHTML = model.topic;
+  view.querySelector('#ts').innerHTML = model.ts;
+  view.querySelector('#type').innerHTML = model.type;
+  view.querySelector('#value').innerHTML = model.value;
 });
 
 // Bootstrap
