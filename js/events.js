@@ -34,9 +34,13 @@ Controller.bind('navbar', document.querySelector('#nav'), (model, view) => {
 // Bind to events table view
 Controller.bind('events', document.querySelector('#events'), (model, view) => {
   const timeStamp = new Date(model.ts);
-  view.querySelector('#ts').textContent = timeStamp.toLocaleString();
+  let value = JSON.stringify(model.value);
+  if (value.length > 75) {
+    value = `${value.substr(0, 72)}...`;
+  }
+  view.querySelector('#ts').textContent = timeStamp.toLocaleTimeString();
   view.querySelector('#name').textContent = `${model.name} [${model.id}]`;
-  view.querySelector('#value').textContent = JSON.stringify(model.value);
+  view.querySelector('#value').innerHTML = `<pre>${value}</pre>`;
 });
 
 // Display error message if provider fails
@@ -49,6 +53,13 @@ Controller.navbar.addEventListener(E.ERROR, (evt) => {
   const toast = document.querySelector('#toast');
   toast.querySelector('#toast-body').innerText = evt.detail;
   toast.setAttribute('show', '');
+});
+
+// Modal test
+const show = document.querySelector('#show');
+show.addEventListener(E.CLICK, () => {
+  const modal = document.querySelector('#modal');
+  modal.setAttribute('show', '');
 });
 
 // Bootstrap

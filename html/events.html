@@ -12,12 +12,13 @@
 <body>
     <wc-navbar id="nav">
         <span>
-            <wc-icon name="book" size="2em" style="margin: 0.4em;"></wc-icon>
+            <wc-icon name="book" size="2em" class="m-2"></wc-icon>
             <strong>go-server</strong>
         </span>
     </wc-navbar>
     <wc-row>
-        <wc-col width="2" style="background-color: var(--control-color);">
+        <!-- Navigation -->
+        <wc-col width="2" style="background-color: var(--light-color);">
             <wc-nav id="lhnav" column>
                 <wc-nav-item name="01-introduction">Introduction</wc-nav-item>
                 <wc-nav-item name="02-typography">Typography</wc-nav-item>
@@ -25,8 +26,10 @@
                 <wc-nav-item name="04-navigation">Navigation</wc-nav-item>
             </wc-nav>
         </wc-col>
+        <!-- Content -->
         <wc-col width="10">
             <div class="container" id="body">
+                <wc-button id="show" class="m-4">SHOW</wc-button>
                 <wc-table id="events">
                     <wc-table-row>
                         <wc-table-cell id="ts">[ts]</wc-table-cell>
@@ -43,6 +46,13 @@
         <wc-close-button></wc-close-button>
         <div id="toast-body"></div>
     </wc-toast>
+
+    <!-- Modal window -->
+    <wc-modal id="modal">
+        <wc-close-button></wc-close-button>
+        <h1>This is a modal window</h1>
+        <p>This is a modal window, you can click the close button to dismiss it</p>
+    </wc-modal>
 
 </body>
 

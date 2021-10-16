@@ -33,8 +33,11 @@ import './table/wc-table-cell';
 
 // Modals, Toasts, etc
 import './toast/wc-toast';
+import './modal/wc-modal';
 
 // Buttons
+import './button/wc-button';
+import './button/wc-button-group';
 import './button/wc-close-button';
 
 // Icons

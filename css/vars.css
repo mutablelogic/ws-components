@@ -160,8 +160,10 @@
     --form-label-border: none;
 
     /* modal */
+    --modal-zindex: 999;
     --modal-margin: 20%;
     --modal-padding: calc(var(--spacer) * 1.5);
+    --modal-backdrop-color: rgba(0, 0, 0, 0.5);
     --modal-color: var(--body-color);
     --modal-background-color: var(--body-background-color);
     --modal-border: 0.5px solid var(--control-color);
