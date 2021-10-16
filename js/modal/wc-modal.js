@@ -34,6 +34,7 @@ window.customElements.define('wc-modal', class extends LitElement {
     return css`
       :host div {
         position: fixed; 
+        display: block;
         z-index: var(--modal-zindex);
         left: 0; 
         top: 0;
@@ -41,9 +42,17 @@ window.customElements.define('wc-modal', class extends LitElement {
         height: 100%;
         overflow-x: hidden;
         overflow-y: auto;
-        display: none;
         outline: 0;
         background-color: var(--modal-backdrop-color);        
+
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity var(--modal-fade-time) ease-in, visibility 0ms ease-in var(--modal-fade-time);
+      }
+      :host div.show {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity var(--modal-fade-time) ease-in, visibility 0ms ease-in 0ms;
       }
       :host div slot {
         position: relative; 
@@ -58,16 +67,19 @@ window.customElements.define('wc-modal', class extends LitElement {
         background-clip: padding-box;
         border: var(--modal-border);
         border-radius: var(--modal-border-radius);
-      }`;
+      }
+      `;
   }
 
   attributeChangedCallback(name, oldval, newval) {
     super.attributeChangedCallback(name, oldval, newval);
     const div = this.shadowRoot.querySelector('div');
-    if (name === 'show' && this.hasAttribute('show')) {
-      div.style.display = 'block';
-    } else {
-      div.style.display = 'none';
+    if (div) {
+      if (name === 'show' && this.hasAttribute('show')) {
+        div.classList.add('show');
+      } else {
+        div.classList.remove('show');
+      }
     }
   }
 
