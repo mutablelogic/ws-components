@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
 <head>
-  <title>js-components | storybook</title>
+  <title>js-components | events</title>
   <link rel="stylesheet" href="./index.css">
   <link rel="shortcut icon" type="image/png" href="#">
   <script type="module" src="./index.js"></script>
-  <script type="module" src="./nav.js"></script>
+  <script type="module" src="./events.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -13,7 +13,7 @@
   <wc-navbar id="nav">
     <span>
       <wc-icon name="book" style="margin: 0.2em;"></wc-icon>
-      <strong>Storybook</strong>
+      <strong>go-server</strong>
     </span>
   </wc-navbar>
   <wc-row>
@@ -27,14 +27,10 @@
     </wc-col>
     <wc-col width="10">
       <div class="container" id="body">
-        TABLE:
-        <wc-table id="mqtt">
+        <wc-table id="events">
             <wc-table-row>
-              <wc-table-cell id="id">[id]</wc-table-cell>
               <wc-table-cell id="ts">[ts]</wc-table-cell>
-              <wc-table-cell id="topic">[topic]</wc-table-cell>
-              <wc-table-cell id="type">[type]</wc-table-cell>
-              <wc-table-cell id="payload">[payload]</wc-table-cell>
+              <wc-table-cell id="name">[name]</wc-table-cell>
               <wc-table-cell id="value">[value]</wc-table-cell>
             </wc-table-row>
         </wc-table>

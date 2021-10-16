@@ -55,6 +55,10 @@ window.customElements.define('wc-nav-item', class extends LitElement {
         font-weight: var(--navitem-font-weight-disabled);
         background-color: var(--navitem-background-color-disabled);
       }
+      ::slotted(a) {
+        text-decoration: none;
+        color: inherit;
+      }
     `;
   }
 

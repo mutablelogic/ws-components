@@ -5,7 +5,7 @@
   "main": "dist/index.js",
   "scripts": {
     "all": "npm-run-all lint build docs",
-    "build": "rm -fr dist && install -d dist && cp -r html/* dist && esbuild js/index.js js/storybook.js --format=esm --minify --bundle --outdir=dist --sourcemap --asset-names=assets/[name]-[hash] --loader:.svg=file --loader:.png=file --loader:.woff=file --loader:.woff2=file --loader:.ttf=file --loader:.otf=file",
+    "build": "rm -fr dist && install -d dist && cp -r html/* dist && esbuild js/index.js js/events.js js/storybook.js --format=esm --minify --bundle --outdir=dist --sourcemap --asset-names=assets/[name]-[hash] --loader:.svg=file --loader:.png=file --loader:.woff=file --loader:.woff2=file --loader:.ttf=file --loader:.otf=file",
     "lint": "eslint js",
     "watch": "npm-watch"
   },
