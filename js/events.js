@@ -15,6 +15,7 @@ import E from './core/event';
 const NAVBAR = {
   '/dev': 'Development',
   'events-frontend': 'Events',
+  'mdns-frontend': 'Services',
 };
 
 // Define providers
@@ -23,6 +24,11 @@ Controller.define('events', new Provider(Events.Event, '/api/events'));
 
 // Bind to navbar items
 Controller.bind('navbar', document.querySelector('#nav'), (model, view) => {
+  if (model.name === '/dev') {
+    view.active = true;
+  } else {
+    view.active = false;
+  }
   let a = view.querySelector('a');
   if (!a) {
     a = view.appendChild(document.createElement('a'));
@@ -55,11 +61,13 @@ Controller.navbar.addEventListener(E.ERROR, (evt) => {
   toast.setAttribute('show', '');
 });
 
-// Table test
+// Click on a table cell
 const table = document.querySelector('#events');
 table.addEventListener(E.CLICK, (evt) => {
   const modal = document.querySelector('#modal');
   modal.setAttribute('show', '');
+  modal.querySelector('#modal-row').innerHTML = evt.detail.row.innerHTML;
+  modal.querySelector('#modal-column').innerHTML = evt.detail.column.innerHTML;
 });
 
 // Bootstrap
