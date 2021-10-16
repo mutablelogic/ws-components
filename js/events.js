@@ -34,13 +34,13 @@ Controller.bind('navbar', document.querySelector('#nav'), (model, view) => {
 // Bind to events table view
 Controller.bind('events', document.querySelector('#events'), (model, view) => {
   const timeStamp = new Date(model.ts);
-  let value = JSON.stringify(model.value);
-  if (value.length > 75) {
-    value = `${value.substr(0, 72)}...`;
+  let value = JSON.stringify(model.value, '', '  ');
+  if (value.length > 200) {
+    value = `${value.substr(0, 197)}...`;
   }
   view.querySelector('#ts').textContent = timeStamp.toLocaleTimeString();
   view.querySelector('#name').innerHTML = `<wc-badge transform="uppercase">${model.name}</wc-badge>&nbsp;<wc-badge bg="secondary">${model.id}</wc-badge>`;
-  view.querySelector('#value').innerHTML = `<pre>${value}</pre>`;
+  view.querySelector('#value').innerHTML = `<pre style="overflow: scroll">${value}</pre>`;
 });
 
 // Display error message if provider fails
@@ -55,17 +55,11 @@ Controller.navbar.addEventListener(E.ERROR, (evt) => {
   toast.setAttribute('show', '');
 });
 
-// Modal test
-const show = document.querySelector('#show');
-show.addEventListener(E.CLICK, () => {
-  const modal = document.querySelector('#modal');
-  modal.setAttribute('show', '');
-});
-
 // Table test
 const table = document.querySelector('#events');
 table.addEventListener(E.CLICK, (evt) => {
-  console.log(evt.detail);
+  const modal = document.querySelector('#modal');
+  modal.setAttribute('show', '');
 });
 
 // Bootstrap
