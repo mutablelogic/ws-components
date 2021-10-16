@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import Event from '../core/event';
+import EventName from '../core/event';
 
 // Default toast visibility duration, in milliseconds
 const DEFAULT_DURATION = 5000;
@@ -71,18 +71,17 @@ window.customElements.define('wc-toast', class extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    this.shadowRoot.addEventListener(Event.CLICK, this.doClick.bind(this));
+    this.shadowRoot.addEventListener(EventName.CLICK, this.doClick.bind(this));
   }
 
   disconnectedCallback() {
-    this.shadowRoot.removeEventListener(Event.CLICK, this.doClick.bind(this));
+    this.shadowRoot.removeEventListener(EventName.CLICK, this.doClick.bind(this));
     super.disconnectedCallback();
   }
 
-  // eslint-disable-next-line class-methods-use-this
   doClick(evt) {
-    // If detail is Event.Close, then close the toast
-    if (evt.detail === Event.CLOSE) {
+    // If detail is EventName.Close, then close the toast
+    if (evt.detail === EventName.CLOSE) {
       this.removeAttribute('show');
     }
   }
@@ -104,10 +103,9 @@ window.customElements.define('wc-toast', class extends LitElement {
       }, this.duration || DEFAULT_DURATION);
 
       // Dispatch event
-      this.dispatchEvent(new CustomEvent(Event.SHOW, {
+      this.dispatchEvent(new CustomEvent(EventName.SHOW, {
         bubbles: true,
         composed: true,
-        detail: this,
       }));
     } else {
       // Remove the class
@@ -118,10 +116,9 @@ window.customElements.define('wc-toast', class extends LitElement {
       }
 
       // Dispatch event
-      this.dispatchEvent(new CustomEvent(Event.HIDE, {
+      this.dispatchEvent(new CustomEvent(EventName.HIDE, {
         bubbles: true,
         composed: true,
-        detail: this,
       }));
     }
   }

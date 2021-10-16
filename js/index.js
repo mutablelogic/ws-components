@@ -35,6 +35,9 @@ import './table/wc-table-cell';
 import './toast/wc-toast';
 import './modal/wc-modal';
 
+// Badge
+import './badge/wc-badge';
+
 // Buttons
 import './button/wc-button';
 import './button/wc-button-group';

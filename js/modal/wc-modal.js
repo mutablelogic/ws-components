@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import Event from '../core/event';
+import EventName from '../core/event';
 
 /**
  * A modal window
@@ -76,26 +76,34 @@ window.customElements.define('wc-modal', class extends LitElement {
     const div = this.shadowRoot.querySelector('div');
     if (div) {
       if (name === 'show' && this.hasAttribute('show')) {
+        this.dispatchEvent(new CustomEvent(EventName.SHOW, {
+          bubbles: true,
+          composed: true,
+        }));
         div.classList.add('show');
       } else {
         div.classList.remove('show');
+        this.dispatchEvent(new CustomEvent(EventName.HIDE, {
+          bubbles: true,
+          composed: true,
+        }));
       }
     }
   }
 
   connectedCallback() {
     super.connectedCallback();
-    this.shadowRoot.addEventListener(Event.CLICK, this.doClick.bind(this));
+    this.shadowRoot.addEventListener(EventName.CLICK, this.doClick.bind(this));
   }
 
   disconnectedCallback() {
-    this.shadowRoot.removeEventListener(Event.CLICK, this.doClick.bind(this));
+    this.shadowRoot.removeEventListener(EventName.CLICK, this.doClick.bind(this));
     super.disconnectedCallback();
   }
 
   doClick(evt) {
-    // If detail is Event.Close, then close the toast
-    if (evt.detail === Event.CLOSE) {
+    // If detail is EventName.Close, then close the toast
+    if (evt.detail === EventName.CLOSE) {
       this.removeAttribute('show');
     }
   }

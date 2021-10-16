@@ -39,7 +39,7 @@ Controller.bind('events', document.querySelector('#events'), (model, view) => {
     value = `${value.substr(0, 72)}...`;
   }
   view.querySelector('#ts').textContent = timeStamp.toLocaleTimeString();
-  view.querySelector('#name').textContent = `${model.name} [${model.id}]`;
+  view.querySelector('#name').innerHTML = `<wc-badge transform="uppercase">${model.name}</wc-badge>&nbsp;<wc-badge bg="secondary">${model.id}</wc-badge>`;
   view.querySelector('#value').innerHTML = `<pre>${value}</pre>`;
 });
 
