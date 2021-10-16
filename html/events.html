@@ -1,42 +1,49 @@
 <!DOCTYPE html>
 
 <head>
-  <title>js-components | events</title>
-  <link rel="stylesheet" href="./index.css">
-  <link rel="shortcut icon" type="image/png" href="#">
-  <script type="module" src="./index.js"></script>
-  <script type="module" src="./events.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js-components | events</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="shortcut icon" type="image/png" href="#">
+    <script type="module" src="./index.js"></script>
+    <script type="module" src="./events.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-  <wc-navbar id="nav">
-    <span>
-      <wc-icon name="book" style="margin: 0.2em;"></wc-icon>
-      <strong>go-server</strong>
-    </span>
-  </wc-navbar>
-  <wc-row>
-    <wc-col width="2" style="background-color: var(--control-color);">
-      <wc-nav id="lhnav" column>
-        <wc-nav-item name="01-introduction">Introduction</wc-nav-item>
-        <wc-nav-item name="02-typography">Typography</wc-nav-item>
-        <wc-nav-item name="03-grid">Grid</wc-nav-item>
-        <wc-nav-item name="04-navigation">Navigation</wc-nav-item>
-      </wc-nav>
-    </wc-col>
-    <wc-col width="10">
-      <div class="container" id="body">
-        <wc-table id="events">
-            <wc-table-row>
-              <wc-table-cell id="ts">[ts]</wc-table-cell>
-              <wc-table-cell id="name">[name]</wc-table-cell>
-              <wc-table-cell id="value">[value]</wc-table-cell>
-            </wc-table-row>
-        </wc-table>
-      </div>
-    </wc-col>
-  </wc-row>
+    <wc-navbar id="nav">
+        <span>
+            <wc-icon name="book" size="2em" style="margin: 0.4em;"></wc-icon>
+            <strong>go-server</strong>
+        </span>
+    </wc-navbar>
+    <wc-row>
+        <wc-col width="2" style="background-color: var(--control-color);">
+            <wc-nav id="lhnav" column>
+                <wc-nav-item name="01-introduction">Introduction</wc-nav-item>
+                <wc-nav-item name="02-typography">Typography</wc-nav-item>
+                <wc-nav-item name="03-grid">Grid</wc-nav-item>
+                <wc-nav-item name="04-navigation">Navigation</wc-nav-item>
+            </wc-nav>
+        </wc-col>
+        <wc-col width="10">
+            <div class="container" id="body">
+                <wc-table id="events">
+                    <wc-table-row>
+                        <wc-table-cell id="ts">[ts]</wc-table-cell>
+                        <wc-table-cell id="name">[name]</wc-table-cell>
+                        <wc-table-cell id="value">[value]</wc-table-cell>
+                    </wc-table-row>
+                </wc-table>
+            </div>
+        </wc-col>
+    </wc-row>
+
+    <!-- Toast which persists on the screen for 5s -->
+    <wc-toast id="toast" duration="5000">
+        <wc-close-button></wc-close-button>
+        <div id="toast-body"></div>
+    </wc-toast>
+
 </body>
 
 </html>

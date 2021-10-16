@@ -43,6 +43,9 @@
     --spacer-5: calc(var(--spacer) * 1.0);
     --spacer-6: calc(var(--spacer) * 1.2);
 
+    /* transitions */
+    --fade-time: 0.5s;
+
     /* containers */
     --container-padding-x: var(--spacer);
     --container-padding-y: var(--spacer-2);
@@ -88,13 +91,12 @@
     --button-padding-y: 0.45em;
     --button-offset-active: 0.1em;
 
-    /* wc-close */
-    --button-close-size: 16px;
+    /* wc-close-button */
     --button-close-padding: 0;
-    --button-close-color: var(--control-color);
+    --button-close-margin-x: 0.5em;
+    --button-close-margin-y: 0.5em;
     --button-close-color-hover: var(--control-color-hover);
     --button-close-color-active: var(--control-color-active);
-    --button-close-color-disabled: var(--control-color-disabled);
 
     /* wc-badge */
     --badge-background-color: var(--primary-color);
@@ -164,5 +166,16 @@
     --modal-background-color: var(--body-background-color);
     --modal-border: 0.5px solid var(--control-color);
     --modal-border-radius: var(--border-radius);
-}
 
+    /* toast */
+    --toast-min-width: 250px;
+    --toast-background-color: var(--body-background-color);
+    --toast-color: var(--body-color);
+    --toast-border: 1px solid var(--secondary-color);
+    --toast-border-radius: var(--border-radius);
+    --toast-padding-x: var(--spacer);
+    --toast-padding-y: var(--spacer);
+    --toast-zindex: 999;
+    --toast-opacity: 0.90;
+    --toast-fade-time: var(--fade-time);
+}

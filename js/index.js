@@ -31,6 +31,12 @@ import './table/wc-table';
 import './table/wc-table-row';
 import './table/wc-table-cell';
 
+// Modals, Toasts, etc
+import './toast/wc-toast';
+
+// Buttons
+import './button/wc-close-button';
+
 // Icons
 import './icon/wc-icon';
 
