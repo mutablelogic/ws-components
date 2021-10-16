@@ -44,7 +44,7 @@
     --spacer-6: calc(var(--spacer) * 1.2);
 
     /* transitions */
-    --fade-time: 100ms;
+    --fade-time: 150ms;
 
     /* containers */
     --container-padding-x: var(--spacer);
@@ -158,6 +158,16 @@
     --form-label-font-weight: var(--font-weight-light);
     --form-label-line-height: 1;
     --form-label-border: none;
+
+    /* tables */
+    --table-background-color: inherit;
+    --table-background-color-hover: var(--control-color-hover);
+    --table-background-color-active: var(--control-color-active);
+    --table-color: inherit;
+    --table-border: 1px solid var(--light-color);
+    --table-margin-x: var(--spacer-1);
+    --table-margin-y: var(--spacer-1);
+    --table-vertical-align: top;
 
     /* modal */
     --modal-zindex: 999;

@@ -1,5 +1,5 @@
 import { LitElement, html, css } from 'lit';
-import Event from '../core/event';
+import EventName from '../core/event';
 
 /**
  * A button element
@@ -61,7 +61,6 @@ window.customElements.define('wc-button', class extends LitElement {
     };
   }
 
-  // eslint-disable-next-line class-methods-use-this
   render() {
     return html`
         <button @click=${this.onClick} ${this.disabled ? 'disabled' : ''}><slot></slot></button>
@@ -69,7 +68,7 @@ window.customElements.define('wc-button', class extends LitElement {
   }
 
   onClick() {
-    this.dispatchEvent(new CustomEvent(Event.CLICK, {
+    this.dispatchEvent(new CustomEvent(EventName.CLICK, {
       bubbles: true,
       composed: true,
       detail: this.name || this.textContent,

@@ -9,6 +9,15 @@ import Model from '../core/model';
 window.customElements.define('wc-table', class extends LitElement {
   static get styles() {
     return css`
+      :host table {
+        width: 100%;
+        margin: var(--table-margin-x) var(--table-margin-y);
+        background-color: var(--table-background-color);
+        color: var(--table-color);
+        border: var(--table-border);
+        border-collapse: collapse;
+        vertical-align: var(--table-vertical-align);
+      }
       :host slot {
         display: none;
       }
@@ -80,7 +89,7 @@ window.customElements.define('wc-table', class extends LitElement {
   // eslint-disable-next-line class-methods-use-this
   render() {
     return html`
-        <table border="1"><tbody><slot></slot></tbody></table>
+        <table><tbody><slot></slot></tbody></table>
       `;
   }
 });

@@ -62,6 +62,12 @@ show.addEventListener(E.CLICK, () => {
   modal.setAttribute('show', '');
 });
 
+// Table test
+const table = document.querySelector('#events');
+table.addEventListener(E.CLICK, (evt) => {
+  console.log(evt.detail);
+});
+
 // Bootstrap
 document.addEventListener('DOMContentLoaded', () => {
   // Make request for adding and removing navigation bar elements

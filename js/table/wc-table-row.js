@@ -1,4 +1,6 @@
+/* eslint-disable class-methods-use-this */
 import { LitElement, html, css } from 'lit';
+import EventName from '../core/event';
 
 /**
  * A table element
@@ -11,13 +13,37 @@ window.customElements.define('wc-table-row', class extends LitElement {
       :host {
         display: table-row;
       }
+      :host(:hover) {
+        cursor: pointer;
+        background-color: var(--table-background-color-hover);
+      }
     `;
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  onClick(evt) {
+    this.dispatchEvent(new CustomEvent(EventName.CLICK, {
+      bubbles: true,
+      composed: true,
+      detail: {
+        row: this,
+        column: this.parentNodeNamed(evt.target, 'wc-table-cell'),
+      },
+    }));
+  }
+
+  parentNodeNamed(node, name) {
+    // eslint-disable-next-line no-param-reassign
+    name = name.toUpperCase();
+    while (node && node.nodeName !== name) {
+      // eslint-disable-next-line no-param-reassign
+      node = node.parentNode;
+    }
+    return node;
+  }
+
   render() {
     return html`
-        <slot></slot>
+        <slot @click=${this.onClick}></slot>
       `;
   }
 });

@@ -10,6 +10,7 @@ window.customElements.define('wc-table-cell', class extends LitElement {
     return css`
       :host {
         display: table-cell;
+        border: none;
       }
     `;
   }
