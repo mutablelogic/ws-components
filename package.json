@@ -1,51 +1,23 @@
 {
-  "name": "@mutablelogic/js-components",
-  "version": "0.0.0",
+  "name": "ws-components",
+  "version": "0.0.1",
   "description": "Web Components Design System",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
-    "all": "npm-run-all lint build docs",
-    "build": "rm -fr dist && install -d dist && cp -r html/* dist && esbuild js/index.js js/events.js js/storybook.js --format=esm --minify --bundle --outdir=dist --sourcemap --asset-names=assets/[name]-[hash] --loader:.svg=file --loader:.png=file --loader:.woff=file --loader:.woff2=file --loader:.ttf=file --loader:.otf=file",
-    "lint": "eslint js",
-    "watch": "npm-watch"
-  },
-  "watch": {
-    "build": {
-      "patterns": [
-        "css",
-        "html",
-        "js"
-      ],
-      "extensions": "html,css,js"
-    }
+    "build": "node build.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mutablelogic/js-components.git"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "url": "git+https://github.com/mutablelogic/ws-components.git"
   },
   "author": "David Thorpe",
-  "license": "Apache",
   "bugs": {
-    "url": "https://github.com/mutablelogic/js-components/issues"
+    "url": "https://github.com/mutablelogic/ws-components/issues"
   },
-  "homepage": "https://github.com/mutablelogic/js-components#readme",
+  "homepage": "https://github.com/mutablelogic/ws-components#readme",
   "devDependencies": {
-    "esbuild": "^0.11.12",
-    "eslint": "^7.24.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
-    "npm-run-all": "^4.1.5",
-    "npm-watch": "^0.9.0"
-  },
-  "dependencies": {
-    "bootstrap-icons": "^1.5.0",
-    "lit": "^2.0.0",
-    "lit-html": "^2.0.0-rc.5"
-  },
-  "files": [
-    "dist/**/*.{js,map,woff,woff2,txt,ttf,css,html,svg,png}"
-  ]
+    "esbuild": "^0.16.14",
+    "reflect-metadata": "^0.1.13",
+    "typescript": "^4.9.4"
+  }
 }
